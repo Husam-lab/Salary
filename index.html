@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حاسبة رواتب الصحة العراقية</title>
+    <style>
+        body {
+            direction: rtl;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        label {
+            margin-bottom: 5px;
+            flex: 1;
+        }
+        input, select {
+            flex: 1;
+            padding: 8px;
+        }
+        button {
+            width: 48%;
+            padding: 10px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        .calculate-btn {
+            background-color: #4CAF50;
+        }
+        .reset-btn {
+            background-color: #f44336;
+        }
+        h2 {
+            margin: 5px 0;
+        }
+        h4 {
+            margin: 5px 0;
+            color: blue;
+        }
+        .notes {
+            color: red;
+            font-size: 12px;
+            margin-top: 15px;
+            text-align: right;
+        }
+        .notes-title {
+            color: darkred;
+            text-decoration: underline;
+            font-weight: bold;
+            margin-bottom: 14px;
+        }
+        #totalSalary, #retirementDeduction {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid ;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+        #totalSalary {
+            color: darkgreen;
+            font-size: 20px;
+        }
+        #retirementDeduction {
+            color: red;
+            font-size: 20px;
+        }
+      
+        .result-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        /* New styles for collapsible notes */
+        .collapsible {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f1f1f1;
+            padding: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            color: darkblue;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .collapsible:after {
+            content: "\25BC"; /* down arrow */
+            font-size: 16px;
+            margin-left: 5px;
+        }
+        .active:after {
+            content: "\25B2"; /* up arrow */
+        }
+        .collapsible-content {
+            display: none;
+            font-size: 12px;
+            color: blue;
+            padding: 10px;
+            text-align: right;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>حاسبة رواتب الصحة العراقية</h2>
+    <h4>(إعداد حسام الحديدي)</h4>
+
+
+    <div class="form-group">
+        <label for="grade">اختار الدرجة:</label>
+        <select id="grade" onchange="updateBaseSalary()">
+            <option value="">-- اختار الدرجة --</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="step">اختار المرحلة:</label>
+        <select id="step" onchange="updateBaseSalary()">
+            <option value="">-- اختار المرحلة --</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="salary">الراتب الاسمي (بالدينار):</label>
+        <input type="number" id="salary" value="0">
+    </div>
+
+    <div class="form-group">
+        <label for="degreeAllowance">مخصصات الشهادة (%):</label>
+        <input type="number" id="degreeAllowance" value="45" onchange="calculateSalary()">
+    </div>
+
+    <div class="form-group">
+        <label for="riskAllowance">مخصصات الخطورة (%):</label>
+        <input type="number" id="riskAllowance" value="80" onchange="calculateSalary()">
+    </div>
+
+    <div class="form-group">
+        <label for="marriageAllowance">مبلغ الزوجية (بالدينار):</label>
+        <input type="number" id="marriageAllowance" value="50" onchange="calculateSalary()">
+    </div>
+
+    <div class="form-group">
+        <label for="adminAllowance">مخصصات الإدارة (إن وجد):</label>
+        <input type="number" id="adminAllowance" value="0" onchange="calculateSalary()">
+    </div>
+
+    <div class="form-group">
+        <label for="children"> عدد الأطفال (إن وجد):</label>
+        <select id="children" onchange="calculateSalary()">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="transportAllowance">مبلغ النقل (بالدينار):</label>
+        <input type="number" id="transportAllowance" value="10" onchange="calculateSalary()">
+    </div>
+
+  
+    <div class="form-group">
+        <button class="calculate-btn" onclick="calculateSalary()">أحسب الراتب</button>
+        <button class="reset-btn" onclick="resetForm()">تصفير الحسابات</button>
+    </div>
+  <div class="form-group">
+        <span id="retirementDeduction">المبلغ المستقطع للتقاعد  = 0  دينار عراقي</div>
+<div class="form-group">
+        <h3 id="totalSalary"> صافي الراتب الكلي = 0 دينار عراقي</h3>
+    </div>
+      
+    <div class="notes">
+        <p class="notes-title">ملاحظات:</p>
+        <p>- البرنامج لا يحسب المسكنين في درجة والعابرين لعلاوات درجة أخرى.</p>
+        <p>- عند اختيار الدرجة والمرحلة البرنامج سيقوم بحساب الراتب الأسمي تبعاً للدرجة والمرحلة المكتوبة.</p>
+        <p>- لا تكتب أصفار الدينار العراقي (مثلاً: 100,000 اكتبها فقط 100).</p>
+        <p>- الخطورة: الخطورة بالنسبة للراتب الاسمي لموظفي الصحة 80‎%‎.</p>
+        <p>- الشهادة: 
+‎            (المتوسطة 15%) (الإعدادية 25%) (الدبلوم 35%) (البكالوريوس 45%) (الماجستير 75%) (الدكتوراه 100%).</p>
+        <p>- النقل:
+‎            (10 آلاف مركز المحافظة) (20 ألف قضاء) (30 ألف ناحية) (40 ألف قرى وأرياف) (50 ألف مناطق نائية).</p>
+        <p>- الزوجية: الأعزب يكتب رقم صفر، اما المتزوج يكتب 50  (تعطى لواحد فقط إذا كان الزوجين كلاهما موظفين).</p>
+        <p>- الأطفال: لكل طفل 10 آلاف الى حد أربعة أطفال ولاتحسب الاطفال بعد الطفل الرابع.</p>
+        <p>- استقطاع التقاعد: 10% من الراتب الاسمي.</p>
+              <p>- الترقيات: (من درجة 10الى6 ترقية كل 4 سنوات) (من درجة 5الى2 ترقية كل 5 سنوات).</p>
+      <p>- العلاوات (الترفيعات) السنوية: (المرحلة 10-9-8 تزداد 3 الاف سنوياً) (المرحلة 7-6-5 تزداد 6 الاف سنوياً) (المرحلة 4 تزداد 8 الاف سنوياً) (المرحلة 3 تزداد 10 الاف سنوياً) (المرحلة 2 تزداد 17 الف سنوياً) (المرحلة 1 تزداد 20 الف سنوياً) ‎‎.</p>
+        <p>- تم إعداد البرنامج بسنة 2024 اعتماداً على سلم الرواتب لنفس السنة .</p>
+    </div>
+</div>
+
+<script>
+    const salaryScale = {
+        1: { 1: 910000, 2: 930000, 3: 950000, 4: 970000, 5: 990000, 6: 1010000, 7: 1030000, 8: 1050000, 9: 1070000, 10: 1090000, 11: 1110000 },
+        2: { 1: 723000, 2: 740000, 3: 757000, 4: 774000, 5: 791000, 6: 808000, 7: 825000, 8: 842000, 9: 859000, 10: 876000, 11: 893000 },
+        3: { 1: 600000, 2: 610000, 3: 620000, 4: 630000, 5: 640000, 6: 650000, 7: 660000, 8: 670000, 9: 680000, 10: 690000, 11: 700000 },
+        4: { 1: 509000, 2: 517000, 3: 525000, 4: 533000, 5: 541000, 6: 549000, 7: 557000, 8: 565000, 9: 573000, 10: 581000, 11: 589000 },
+        5: { 1: 429000, 2: 435000, 3: 441000, 4: 447000, 5: 453000, 6: 459000, 7: 465000, 8: 471000, 9: 477000, 10: 483000, 11: 489000 },
+        6: { 1: 362000, 2: 368000, 3: 374000, 4: 380000, 5: 386000, 6: 392000, 7: 398000, 8: 404000, 9: 410000, 10: 416000, 11: 422000 },
+        7: { 1: 296000, 2: 302000, 3: 308000, 4: 314000, 5: 320000, 6: 326000, 7: 332000, 8: 338000, 9: 344000, 10: 350000, 11: 356000 },
+        8: { 1: 260000, 2: 263000, 3: 266000, 4: 269000, 5: 272000, 6: 275000, 7: 278000, 8: 281000, 9: 284000, 10: 287000, 11: 290000 },
+        9: { 1: 210000, 2: 213000, 3: 216000, 4: 219000, 5: 222000, 6: 225000, 7: 228000, 8: 231000, 9: 234000, 10: 237000, 11: 240000 },
+        10: { 1: 170000, 2: 173000, 3: 176000, 4: 179000, 5: 182000, 6: 185000, 7: 188000, 8: 191000, 9: 194000, 10: 197000, 11: 200000 }
+    };
+
+
+    function updateBaseSalary() {
+        const grade = document.getElementById('grade').value;
+        const step = document.getElementById('step').value;
+
+        if (salaryScale[grade] && salaryScale[grade][step]) {
+            document.getElementById('salary').value = salaryScale[grade][step] / 1000; // convert to thousands
+        } else {
+            document.getElementById('salary').value = 0;
+        }
+    }
+
+    function calculateSalary() {
+        let baseSalary = parseFloat(document.getElementById('salary').value) * 1000; // convert back to full value
+        let degreeAllowance = (parseFloat(document.getElementById('degreeAllowance').value) / 100) * baseSalary;
+        let riskAllowance = (parseFloat(document.getElementById('riskAllowance').value) / 100) * baseSalary;
+        let marriageAllowance = parseFloat(document.getElementById('marriageAllowance').value) * 1000 || 0; // 50 يعني 50,000
+        let adminAllowance = (parseFloat(document.getElementById('adminAllowance').value) || 0) * 1000; // convert to full value
+        let childrenCount = parseInt(document.getElementById('children').value);
+        let transportAllowance = parseFloat(document.getElementById('transportAllowance').value) * 1000 || 0; // default to 0 if NaN
+        
+        let childrenAllowance = childrenCount * 10000; // 10 آلاف لكل طفل
+        let retirementDeduction = 0.1 * baseSalary; // 10% من الراتب الاسمي
+
+        let totalSalary = baseSalary + degreeAllowance + riskAllowance + marriageAllowance + adminAllowance + childrenAllowance + transportAllowance - retirementDeduction;
+
+        document.getElementById('retirementDeduction').innerText = `  المبلغ المستقطع للتقاعد  = ${retirementDeduction.toLocaleString()} دينار عراقي`;
+        document.getElementById('totalSalary').innerText = `صافي الراتب الكلي = ${totalSalary.toLocaleString()} دينار عراقي`;
+    }
+
+    function resetForm() {
+        document.getElementById('grade').value = '';
+        document.getElementById('step').value = '';
+        document.getElementById('salary').value = 0;
+        document.getElementById('degreeAllowance').value = 45;
+        document.getElementById('riskAllowance').value = 80;
+        document.getElementById('marriageAllowance').value = 50;
+        document.getElementById('adminAllowance').value = 0;
+        document.getElementById('children').value = 0;
+        document.getElementById('transportAllowance').value = 10;
+
+        calculateSalary();
+    }
+</script>  
+  </div>
+
+    <!-- New collapsible section for vacation notes -->
+    <div class="collapsible" onclick="toggleCollapsible(this)">ملاحظات الإجازات</div>
+    <div class="collapsible-content">
+        <p>- كل موظف له الحق باخذ 3 أيام في كل شهر إجازة رسمية براتب كامل بحالة توفر البديل وله الحق بجمع إجازاته المتراكمة واخذها بوقت واحد شرط ان تكون كل إجازة مدتها 29 يوم او أقل، غير ذلك يتم الإبقاء على الراتب الاسمي فقط.</p>
+        <p>- كل موظف له الحق باجازة مرضية كل 6 أشهر بحالة وجود عذر مَرضي وبفحص طبيب اخصائي حصراً.</p>
+        <p>- كل 7 اجازات زمنية يتم خصم يوم من الإجازات الشهرية الخاصة بالموظف.</p>
+        <p>- الأمومة: الـ 51 يوم (اول 21 يوم قبل الوضع براتب كامل، الـ 30 يوم الباقية براتب اسمي ونصف مخصصات الخطورة والشهادة إضافة لمخصصات الزوجيه والاطفال).</p>
+        <p>- في حالة وجود مرض مزمن (عافاكم الله) الموظف له حق باخذ اجازة مرضية لمدة 3 سنوات اول 6 أشهر براتب كامل وبعدها براتب اسمي.</p>
+        <p>- الموظفين العاملين في شعبة الأشعة والمفراس لهم اجازة رسمية 6 ايام في كل شهر (3 اعتيادية +3 خاصة بالاشعاع).</p>
+        <p>- اجازة الزواج 28 يوم براتب .. اذا أكثر من شهر براتب اسمي فقط.</p>
+    </div>
+
+    <!-- New collapsible section for absence notes -->
+    <div class="collapsible" onclick="toggleCollapsible(this)">ملاحظات الغيابات</div>
+    <div class="collapsible-content">
+        <p>- عقوبة لفت نظر: تأخير العلاوة والترقية 3 أشهر.</p>
+        <p>- عقوبة قطع الراتب: من (1-5) ايام تأخير العلاوة والترقية (5) أشهر، وإذا زاد يتم التأخير عن كل يوم بشهر.</p>
+        <p>- عقوبة الإنذار: تأخير العلاوة والترقية (6) أشهر.</p>
+        <p>- عقوبة التوبيخ: تأخير العلاوة والترقية سنة كاملة.</p>
+        <p>- عقوبة تنبيه أو التوجيه: ليست عقوبة وليس لها أي تأثير مالي.</p>
+    </div>
+
+</div>
+
+<script>
+    function toggleCollapsible(element) {
+        element.classList.toggle("active");
+        var content = element.nextElementSibling;
+        if (content.style.display === "block") {
+            content.style.display = "none";
+        } else {
+            content.style.display = "block";
+        }
+    }
+
+    // Rest of the JavaScript remains unchanged
+</script>
+
+</body>
+</html>
