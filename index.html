@@ -56,47 +56,34 @@
             margin: 5px 0;
             color: blue;
         }
-        .notes {
-            color: red;
-            font-size: 12px;
-            margin-top: 15px;
-            text-align: right;
-        }
-        .notes-title {
-            color: darkred;
-            text-decoration: underline;
-            font-weight: bold;
-            margin-bottom: 14px;
-        }
-        #totalSalary, #retirementDeduction {
-            text-align: center;
+      #totalSalary, #retirementDeduction{
+          text-align: center;
+        margin-left: auto;
+        margin-right: auto;
             font-size: 18px;
             margin-top: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 1px solid ;
+            border: 1px solid;
             border-radius: 5px;
             padding: 10px;
             background-color: #f0f0f0;
         }
         #totalSalary {
             color: darkgreen;
-            font-size: 20px;
+            font-size: 15px;
         }
         #retirementDeduction {
             color: red;
-            font-size: 20px;
+            font-size: 16px;
         }
-      
         .result-box {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
         }
-
-        /* New styles for collapsible notes */
         .collapsible {
             cursor: pointer;
             display: flex;
@@ -121,7 +108,7 @@
         }
         .collapsible-content {
             display: none;
-            font-size: 12px;
+            font-size: 14px;
             color: blue;
             padding: 10px;
             text-align: right;
@@ -136,6 +123,7 @@
 <div class="container">
     <h2>حاسبة رواتب الصحة العراقية</h2>
     <h4>(إعداد حسام الحديدي)</h4>
+
 
 
     <div class="form-group">
@@ -214,36 +202,36 @@
         <input type="number" id="transportAllowance" value="10" onchange="calculateSalary()">
     </div>
 
-  
+
     <div class="form-group">
         <button class="calculate-btn" onclick="calculateSalary()">أحسب الراتب</button>
         <button class="reset-btn" onclick="resetForm()">تصفير الحسابات</button>
     </div>
-  <div class="form-group">
-        <span id="retirementDeduction">المبلغ المستقطع للتقاعد  = 0  دينار عراقي</div>
-<div class="form-group">
+
+    <div class="form-group">
+        <span id="retirementDeduction">المبلغ المستقطع للتقاعد  = 0  دينار عراقي</span>
+    </div>
+
+    <div class="form-group">
         <h3 id="totalSalary"> صافي الراتب الكلي = 0 دينار عراقي</h3>
     </div>
-      
-    <div class="notes">
-        <p class="notes-title">  ملاحظات الرواتب والحاسبة:</p>
+
+    <!-- Collapsible section for salary notes -->
+    <div class="collapsible" onclick="toggleCollapsible(this)">ملاحظات الرواتب والحاسبة :</div>
+    <div class="collapsible-content">
         <p>- البرنامج لا يحسب المسكنين في درجة والعابرين لعلاوات درجة أخرى.</p>
         <p>- عند اختيار الدرجة والمرحلة البرنامج سيقوم بحساب الراتب الأسمي تبعاً للدرجة والمرحلة المكتوبة.</p>
         <p>- لا تكتب أصفار الدينار العراقي (مثلاً: 100,000 اكتبها فقط 100).</p>
-        <p>-  الخطورة: الخطورة تضاف على الراتب الاسمي لقسم التخدير 180‎%‎  وللمهن الصحية والتمريضية 80‎%‎.</p>
-        <p>- الشهادة: 
-‎            (المتوسطة 15%) (الإعدادية 25%) (الدبلوم 35%) (البكالوريوس 45%) (الماجستير 75%) (الدكتوراه 100%).</p>
-        <p>- النقل:
-‎            (10 آلاف مركز المحافظة) (20 ألف قضاء) (30 ألف ناحية) (40 ألف قرى وأرياف) (50 ألف مناطق نائية).</p>
+        <p>- الخطورة:  تضاف على الراتب الاسمي لقسم التخدير 180‎%‎ وللمهن الصحية والتمريضية 80‎%‎.</p>
+        <p>- الشهادة: (المتوسطة 15%) (الإعدادية 25%) (الدبلوم 35%) (البكالوريوس 45%) (الماجستير 75%) (الدكتوراه 100%).</p>
+        <p>- النقل: (10 آلاف مركز المحافظة) (20 ألف قضاء) (30 ألف ناحية) (40 ألف قرى وأرياف) (50 ألف مناطق نائية).</p>
         <p>- الزوجية: الأعزب يكتب رقم صفر، اما المتزوج يكتب 50  (تعطى لواحد فقط إذا كان الزوجين كلاهما موظفين).</p>
         <p>- الأطفال: لكل طفل 10 آلاف الى حد أربعة أطفال ولاتحسب الاطفال بعد الطفل الرابع.</p>
         <p>- استقطاع التقاعد: 10% من الراتب الاسمي.</p>
-              <p>- الترقيات: (من درجة 10الى6 ترقية كل 4 سنوات) (من درجة 5الى2 ترقية كل 5 سنوات).</p>
-      <p>- العلاوات (الترفيعات) السنوية: (المرحلة 10-9-8 تزداد 3 الاف سنوياً) (المرحلة 7-6-5 تزداد 6 الاف سنوياً) (المرحلة 4 تزداد 8 الاف سنوياً) (المرحلة 3 تزداد 10 الاف سنوياً) (المرحلة 2 تزداد 17 الف سنوياً) (المرحلة 1 تزداد 20 الف سنوياً) ‎‎.</p>
-        <p>- تم إعداد البرنامج بسنة 2024 اعتماداً على سلم الرواتب لنفس السنة .</p>
+        <p>- الترقيات: (من درجة 10 الى 6 ترقية كل 4 سنوات) (من درجة 5 الى 2 ترقية كل 5 سنوات).</p>
+        <p>- العلاوات (الترفيعات) السنوية: (المرحلة 10-9-8 تزداد 3 الاف سنوياً) (المرحلة 7-6-5 تزداد 6 الاف سنوياً) (المرحلة 4 تزداد 8 الاف سنوياً) (المرحلة 3 تزداد 10 الاف سنوياً) (المرحلة 2 تزداد 17 الف سنوياً) (المرحلة 1 تزداد 20 الف سنوياً).</p>
+        <p>- تم إعداد البرنامج بسنة 2024 اعتماداً على سلم الرواتب لنفس السنة.</p>
     </div>
-</div>
-
 <script>
     const salaryScale = {
         1: { 1: 910000, 2: 930000, 3: 950000, 4: 970000, 5: 990000, 6: 1010000, 7: 1030000, 8: 1050000, 9: 1070000, 10: 1090000, 11: 1110000 },
@@ -305,7 +293,7 @@
   </div>
 
     <!-- New collapsible section for vacation notes -->
-    <div class="collapsible" onclick="toggleCollapsible(this)">ملاحظات الإجازات</div>
+    <div class="collapsible" onclick="toggleCollapsible(this)">ملاحظات الإجازات :</div>
     <div class="collapsible-content">
         <p>- كل موظف له الحق باخذ 3 أيام في كل شهر إجازة رسمية براتب كامل بحالة توفر البديل وله الحق بجمع إجازاته المتراكمة واخذها بوقت واحد شرط ان تكون كل إجازة مدتها 29 يوم او أقل، غير ذلك يتم الإبقاء على الراتب الاسمي فقط.</p>
         <p>- كل موظف له الحق باجازة مرضية كل 6 أشهر بحالة وجود عذر مَرضي وبفحص طبيب اخصائي حصراً.</p>
@@ -317,7 +305,7 @@
     </div>
 
     <!-- New collapsible section for absence notes -->
-    <div class="collapsible" onclick="toggleCollapsible(this)">ملاحظات العقوبات</div>
+    <div class="collapsible" onclick="toggleCollapsible(this)">ملاحظات العقوبات :</div>
     <div class="collapsible-content">
         <p>- عقوبة لفت نظر: تأخير العلاوة والترقية 3 أشهر.</p>
         <p>- عقوبة قطع الراتب: من (1-5) ايام تأخير العلاوة والترقية (5) أشهر، وإذا زاد يتم التأخير عن كل يوم بشهر.</p>
@@ -341,6 +329,5 @@
 
     // Rest of the JavaScript remains unchanged
 </script>
-
-</body>
+  </body>
 </html>
