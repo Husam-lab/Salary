@@ -1,1 +1,31 @@
-
+{
+    "name": "حاسبة الرواتب",
+    "short_name": "حاسبة الرواتب",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#4CAF50",
+    "description": "حاسبة الرواتب الصحية العراقية.",
+    "icons": [
+        {
+            "src": "./Mon.png",
+            "sizes": "any",
+            "type": "image/png"
+        },
+        {
+            "src": "./Mon.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "./Mon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "apple_touch_icon": {
+        "src": "./Mon.png",
+        "sizes": "180x180",
+        "type": "image/png"
+    }
+}
