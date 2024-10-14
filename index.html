@@ -11,6 +11,8 @@
             direction: rtl;
             font-family: Arial, sans-serif;
             text-align: center;
+           background-color: #000; /* لون خلفية أسود */
+            color: #fff; /* لون النص أبيض */
         }
         .container {
             max-width: 400px;
@@ -18,7 +20,7 @@
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 10px;
-            background-color: #f9f9f9;
+            background-color: #333; /* لون خلفية داكن للعنصر */
         }
         .form-group {
             margin-bottom: 15px;
@@ -29,10 +31,14 @@
         label {
             margin-bottom: 5px;
             flex: 1;
+          color: #fff; /* لون النص أبيض */
         }
         input, select {
             flex: 1;
             padding: 8px;
+            background-color: #444; /* لون خلفية الحقول */
+            color: #fff; /* لون النص أبيض */
+            border: 1px solid #555; /* لون حدود الحقول */
         }
        input{
            touch-action: manipulation;
@@ -57,6 +63,7 @@
         }
         h2 {
             margin: 5px 0;
+          color: #fff; /* لون النص أبيض */
         }
         h4 {
             margin: 5px 0;
@@ -71,17 +78,17 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 1px solid;
+            border: 1px solid #555; /* لون حدود */
             border-radius: 5px;
             padding: 10px;
-            background-color: #f0f0f0;
+            background-color: #222; /* لون خلفية */
         }
         #totalSalary {
-            color: darkgreen;
+            color: lightgreen; /* لون النص */
             font-size: 15px;
         }
         #retirementDeduction {
-            color: red;
+            color: red;  /* لون النص */
             font-size: 16px;
         }
         .result-box {
@@ -95,12 +102,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #f1f1f1;
+            background-color: #444; /* لون خلفية */
             padding: 10px;
             font-size: 14px;
             font-weight: bold;
-            color: darkblue;
-            border: 1px solid #ccc;
+            color: #ffcc00; /* لون النص متباين */
+            border: 1px solid #555; /* لون حدود */
             border-radius: 5px;
             margin-top: 20px;
         }
@@ -115,12 +122,13 @@
         .collapsible-content {
             display: none;
             font-size: 14px;
-            color: blue;
+            color: #fff; /* لون النص */
             padding: 10px;
             text-align: right;
-            border: 1px solid #ccc;
+            border: 1px solid #555; /* لون حدود */
             border-radius: 5px;
             margin-top: 5px;
+            background-color: #333; /* لون خلفية */
         }
     </style>
 </head>
@@ -133,9 +141,9 @@
 
 
     <div class="form-group">
-        <label for="grade">اختار الدرجة:</label>
+        <label for="grade"> اختر الدرجة :</label>
         <select id="grade" onchange="updateBaseSalary()">
-            <option value="">-- اختار الدرجة --</option>
+            <option value="">-- أنقر لأختيار المرحلة --</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -150,9 +158,9 @@
     </div>
 
     <div class="form-group">
-        <label for="step">اختار المرحلة:</label>
+        <label for="step">اختر المرحلة :</label>
         <select id="step" onchange="updateBaseSalary()">
-            <option value="">-- اختار المرحلة --</option>
+            <option value="">-- أنقر لأختيار المرحلة --</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
