@@ -55,12 +55,14 @@
             color: #fff;
             pointer-events: none;
             transition: 0.2s ease all;
+                border: 0.2px solid transparent; /* إضافة الحدود الشفافة بشكل افتراضي */
         }
         input:focus + label,
         input:not(:placeholder-shown) + label {
             top: -1px; /* مكان الليبل بعد الإدخال */
             font-size: 12px; /* حجم الخط بعد الإدخال */
            background-color: #333; /* لون خلفية داكن للعنصر */
+            border-color: white; /* تغيير لون الحدود إلى الأبيض عند التركيز */
         }
         input {
             width: 95%;
@@ -78,7 +80,7 @@
             text-align: center;
             padding: 8px;
             background-color: #333; /* لون خلفية الحقول */
-            color: #fff; /* لون النص أبيض */
+    border: 0.2px solid white; /* إضافة حدود بيضاء */
             border: none; /* إزالة الحدود */
             border-radius: 5px; /* زوايا مستديرة */
             font-size: 16px; /* حجم الخط */
