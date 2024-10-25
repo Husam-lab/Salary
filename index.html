@@ -24,28 +24,66 @@
         }
         .form-group {
             margin-bottom: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            position: relative;
+        }
+       
+        body {
+            direction: rtl;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #000; /* لون خلفية أسود */
+            color: #fff; /* لون النص أبيض */
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #333; /* لون خلفية داكن للعنصر */
+        }
+        .form-group {
+            margin-bottom: 1px;
+            position: relative;
         }
         label {
-            margin-bottom: 5px;
-            flex: 1;
-          color: #fff; /* لون النص أبيض */
+            position: absolute;
+            left: 50%; /* وضع الليبل في المنتصف */
+            top: 12px; /* يمكنك تعديل هذه القيمة لتناسب احتياجاتك */
+            transform: translateX(-50%); /* لتحريك الليبل إلى المنتصف */
+            font-size: 16px;
+            color: #fff;
+            pointer-events: none;
+            transition: 0.2s ease all;
         }
-        input, select {
-            flex: 0.5;
-            width: 50%;
+        input:focus + label,
+        input:not(:placeholder-shown) + label {
+            top: -1px; /* مكان الليبل بعد الإدخال */
+            font-size: 12px; /* حجم الخط بعد الإدخال */
+           background-color: #333; /* لون خلفية داكن للعنصر */
+        }
+        input {
+            width: 95%;
             text-align: center;
-            padding: 4px;
+            padding: 8px;
             background-color: #444; /* لون خلفية الحقول */
             color: #fff; /* لون النص أبيض */
-            border: 1px solid #555; /* لون حدود الحقول */
+            border: none; /* إزالة الحدود */
+            border-radius: 5px; /* زوايا مستديرة */
+            font-size: 16px; /* حجم الخط */
+            margin-top: 5px; /* إضافة مسافة فوق الحقل */
         }
-       input{
-           touch-action: manipulation;
-       font-size: 16px;
-       }
+             select {
+            width: 100%;
+            text-align: center;
+            padding: 8px;
+            background-color: #444; /* لون خلفية الحقول */
+            color: #fff; /* لون النص أبيض */
+            border: none; /* إزالة الحدود */
+            border-radius: 5px; /* زوايا مستديرة */
+            font-size: 16px; /* حجم الخط */
+            margin-top: 10px; /* إضافة مسافة فوق الحقل */
+        }
         button {
             width: 48%;
             padding: 10px;
@@ -53,6 +91,8 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+                      margin-top: 20px; /* إضافة مسافة فوق الحقل */
+
         }
         button:hover {
             opacity: 0.9;
@@ -143,7 +183,6 @@
 
 
     <div class="form-group">
-        <label for="grade"> اختر الدرجة الوظيفية الحالية :</label>
         <select id="grade" onchange="updateBaseSalary()">
             <option value="">-- أنقر لأختيار الدرجة --</option>
             <option value="1">1</option>
@@ -160,7 +199,6 @@
     </div>
 
     <div class="form-group">
-        <label for="step">اختر المرحلة الوظيفية الحالية :</label>
         <select id="step" onchange="updateBaseSalary()">
             <option value="">-- أنقر لأختيار المرحلة --</option>
             <option value="1">1</option>
@@ -176,48 +214,63 @@
             <option value="11">11</option>
         </select>
     </div>
-
     <div class="form-group">
-        <label for="salary">الراتب الاسمي (بالدينار):</label>
-        <input type="number" id="salary" value="0" placeholder="0"  pattern="[0-9]*" inputmode="decimal">
+        <select id="degreeAllowance" onchange="updateBaseSalary()">
+            <option value="">-- أنقر لأختيار الشهادة --</option>
+            <option value="0">لاتوجد شهادة</option>
+            <option value="15">(المتوسطة 15%)</option>
+            <option value="25">(الإعدادية 25%)</option>
+            <option value="35">(الاعدادية 35%)</option>
+            <option value="35">(الدبلوم 35%)</option>
+            <option value="45">(البكالوريوس 45%)</option>
+            <option value="75">(الماجستير 75%)</option>
+            <option value="100">(الدكتوراه 100%)</option>
+        </select>
     </div>
-
     <div class="form-group">
-        <label for="degreeAllowance">مخصصات الشهادة (%):</label>
-        <input type="number" id="degreeAllowance" value="45" onchange="calculateSalary()" placeholder="0"  pattern="[0-9]*" inputmode="decimal">
+        <select id="riskAllowance" onchange="updateBaseSalary()">
+            <option value="">-- أنقر لأختيار الخطورة --</option>
+            <option value="0">لاتوجد خطورة</option>
+            <option value="80">(المهن الصحية ولاتمريضية 80%)</option>
+            <option value="180">(التخدير 180%)</option>
+        </select>
     </div>
-
-    <div class="form-group">
-        <label for="riskAllowance">مخصصات الخطورة (%):</label>
-        <input type="number" id="riskAllowance" value="80" onchange="calculateSalary()" placeholder="0"  pattern="[0-9]*" inputmode="decimal">
-    </div>
-
-    <div class="form-group">
-        <label for="marriageAllowance">مبلغ الزوجية (بالدينار):</label>
-        <input type="number" id="marriageAllowance" value="50" onchange="calculateSalary()" placeholder="0"  pattern="[0-9]*" inputmode="decimal">
-    </div>
-
-    <div class="form-group">
-        <label for="adminAllowance">مخصصات الإدارة (إن وجد):</label>
-        <input type="number" id="adminAllowance" value="0" onchange="calculateSalary()" placeholder="0"  pattern="[0-9]*" inputmode="decimal">
-    </div>
-
-    <div class="form-group">
-        <label for="children"> عدد الأطفال (إن وجد):</label>
-        <select id="children" onchange="calculateSalary()">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
+     <div class="form-group">
+        <select id="maritalStatus" onchange="updateMaritalStatus()">
+            <option value="" disabled selected>-- أنقر لأختيار الحالة الزوجية --</option>
+            <option value="50000">متزوج</option>
+            <option value="0">غير متزوج</option>
         </select>
     </div>
 
-    <div class="form-group">
-        <label for="transportAllowance">مبلغ النقل (بالدينار):</label>
-        <input type="number" id="transportAllowance" value="10" onchange="calculateSalary()">
+    <div class="form-group" id="childrenContainer" style="display: none;">
+        <select id="children">
+       <option value="" disabled selected>-- أنقر لأختيار عدد الاطفال --</option>
+            <option value="0">0</option>
+            <option value="10000">1</option>
+            <option value="20000">2</option>
+            <option value="30000">3</option>
+            <option value="40000">4</option>
+        </select>
     </div>
-
+    <div class="form-group">
+        <select id="transportAllowance">
+            <option value="" disabled selected>ا-- أنقر لأختيار مخصصات النقل --</option>
+            <option value="10000">10 آلاف مركز المحافظة</option>
+            <option value="20000">20 ألف قضاء</option>
+            <option value="30000">30 ألف ناحية</option>
+            <option value="40000">40 ألف قرى وأرياف</option>
+            <option value="50000">50 ألف مناطق نائية</option>
+        </select>
+    </div>
+<div class="form-group">
+    <input type="number" id="salary" placeholder=" " pattern="[0-9]*" inputmode="decimal" required>
+    <label for="salary">الراتب الاسمي</label>
+</div>
+<div class="form-group">
+    <input type="number" id="adminAllowance" placeholder=" " pattern="[0-9]*" inputmode="decimal" required>
+    <label for="adminAllowance">مخصصات الإدارة (إن وجد)</label>
+</div>
 
     <div class="form-group">
         <button class="calculate-btn" onclick="calculateSalary()">أحسب الراتب</button>
@@ -235,13 +288,12 @@
     <!-- Collapsible section for salary notes -->
     <div class="collapsible" onclick="toggleCollapsible(this)">ملاحظات الرواتب والحاسبة :</div>
     <div class="collapsible-content">
+                <p>- استخدم الارقام الانكليزية في حال كتبت الارقام.</p>
+                <p>- البرنامج يعمل بصورة صحيحة سواء ادخلت الراتب الأسمي او اخترت الدرجة والمرحلة وقام هو بكتابة الراتب الأسمي.</p>
         <p>- البرنامج لا يحسب المسكنين في درجة والعابرين لعلاوات درجة أخرى.</p>
         <p>- عند اختيار الدرجة والمرحلة البرنامج سيقوم بحساب الراتب الأسمي تبعاً للدرجة والمرحلة المكتوبة.</p>
         <p>- لا تكتب أصفار الدينار العراقي (مثلاً: 100,000 اكتبها فقط 100).</p>
-        <p>- الخطورة:  تضاف على الراتب الاسمي لقسم التخدير 180‎%‎ وللمهن الصحية والتمريضية 80‎%‎.</p>
-        <p>- الشهادة: (المتوسطة 15%) (الإعدادية 25%) (الدبلوم 35%) (البكالوريوس 45%) (الماجستير 75%) (الدكتوراه 100%).</p>
-        <p>- النقل: (10 آلاف مركز المحافظة) (20 ألف قضاء) (30 ألف ناحية) (40 ألف قرى وأرياف) (50 ألف مناطق نائية).</p>
-        <p>- الزوجية: الأعزب يكتب رقم صفر، اما المتزوج يكتب 50  (تعطى لواحد فقط إذا كان الزوجين كلاهما موظفين).</p>
+        <p>- الزوجية: تعطى لواحد فقط إذا كان الزوجين كلاهما موظفين.</p>
         <p>- الأطفال: لكل طفل 10 آلاف الى حد أربعة أطفال ولاتحسب الاطفال بعد الطفل الرابع.</p>
         <p>- استقطاع التقاعد: 10% من الراتب الاسمي.</p>
         <p>- الترقيات: (من درجة 10 الى 6 ترقية كل 4 سنوات) (من درجة 5 الى 2 ترقية كل 5 سنوات).</p>
@@ -270,6 +322,11 @@
         <p>- عقوبة تنبيه أو التوجيه: ليست عقوبة وليس لها أي تأثير مالي.</p>
     </div>
 <script>
+          function updateMaritalStatus() {
+        const maritalStatus = document.getElementById('maritalStatus').value;
+        document.getElementById('childrenContainer').style.display = (maritalStatus === '50000') ? 'block' : 'none';
+    }
+
     const salaryScale = {
         1: { 1: 910000, 2: 930000, 3: 950000, 4: 970000, 5: 990000, 6: 1010000, 7: 1030000, 8: 1050000, 9: 1070000, 10: 1090000, 11: 1110000 },
         2: { 1: 723000, 2: 740000, 3: 757000, 4: 774000, 5: 791000, 6: 808000, 7: 825000, 8: 842000, 9: 859000, 10: 876000, 11: 893000 },
@@ -285,51 +342,91 @@
 
 
     function updateBaseSalary() {
-        const grade = document.getElementById('grade').value;
-        const step = document.getElementById('step').value;
+    const grade = document.getElementById('grade').value;
+    const step = document.getElementById('step').value;
 
-        if (salaryScale[grade] && salaryScale[grade][step]) {
-            document.getElementById('salary').value = salaryScale[grade][step] / 1000; // convert to thousands
-        } else {
-            document.getElementById('salary').value = 0;
-        }
-    }
-
-    function calculateSalary() {
-        let baseSalary = parseFloat(document.getElementById('salary').value) * 1000; // convert back to full value
-        let degreeAllowance = (parseFloat(document.getElementById('degreeAllowance').value) / 100) * baseSalary;
-        let riskAllowance = (parseFloat(document.getElementById('riskAllowance').value) / 100) * baseSalary;
-        let marriageAllowance = parseFloat(document.getElementById('marriageAllowance').value) * 1000 || 0; // 50 يعني 50,000
-        let adminAllowance = (parseFloat(document.getElementById('adminAllowance').value) || 0) * 1000; // convert to full value
-        let childrenCount = parseInt(document.getElementById('children').value);
-        let transportAllowance = parseFloat(document.getElementById('transportAllowance').value) * 1000 || 0; // default to 0 if NaN
-        
-        let childrenAllowance = childrenCount * 10000; // 10 آلاف لكل طفل
-        let retirementDeduction = 0.1 * baseSalary; // 10% من الراتب الاسمي
-
-        let totalSalary = baseSalary + degreeAllowance + riskAllowance + marriageAllowance + adminAllowance + childrenAllowance + transportAllowance - retirementDeduction;
-
-        document.getElementById('retirementDeduction').innerText = `  المبلغ المستقطع للتقاعد  = ${retirementDeduction.toLocaleString()} دينار عراقي`;
-        document.getElementById('totalSalary').innerText = `صافي الراتب الكلي = ${totalSalary.toLocaleString()} دينار عراقي`;
-    }
-
-    function resetForm() {
-        document.getElementById('grade').value = '';
-        document.getElementById('step').value = '';
+    if (salaryScale[grade] && salaryScale[grade][step]) {
+        document.getElementById('salary').value = salaryScale[grade][step] / 1000; // convert to thousands
+    } else {
         document.getElementById('salary').value = 0;
-        document.getElementById('degreeAllowance').value = 45;
-        document.getElementById('riskAllowance').value = 80;
-        document.getElementById('marriageAllowance').value = 50;
-        document.getElementById('adminAllowance').value = 0;
-        document.getElementById('children').value = 0;
-        document.getElementById('transportAllowance').value = 10;
-
-        calculateSalary();
     }
-  </script>
-  </div>
-  </div>
-<script>
+}
+
+function calculateSalary() {
+    const grade = document.getElementById("grade").value;
+    const step = document.getElementById("step").value;
+    const salary = document.getElementById("salary").value;
+    const degreeAllowance = document.getElementById("degreeAllowance").value;
+    const riskAllowance = document.getElementById("riskAllowance").value;
+    const maritalStatus = document.getElementById("maritalStatus").value;
+    const transportAllowance = document.getElementById("transportAllowance").value;
+    const childrenCount = parseInt(document.getElementById("children").value) || 0;
+
+    if (!grade) {
+        alert("يرجى اختيار الدرجة.");
+        return;
+    }
+    if (!step) {
+        alert("يرجى اختيار المرحلة.");
+        return;
+    }
+    if (!salary) {
+        alert("يرجى إدخال الراتب الاسمي.");
+        return;
+    }
+    if (!degreeAllowance) {
+        alert("يرجى اختيار الشهادة.");
+        return;
+    }
+    // تنبيه عند عدم اختيار مخصصات الخطورة
+    if (riskAllowance === "") {
+        alert("يرجى اختيار مخصصات الخطورة.");
+        return;
+    }
+    if (!maritalStatus) {
+        alert("يرجى اختيار الحالة الزوجية.");
+        return;
+    }
+  
+    // تنبيه لعدد الأطفال في حال اختيار متزوج
+    if (maritalStatus === "50000" && childrenCount === 0) {
+        alert("يرجى اختيار عدد الأطفال.");
+        return;
+    }
+    if (!transportAllowance) {
+        alert("يرجى اختيار مخصصات النقل.");
+        return;
+    }
+
+
+    // إذا تم إدخال جميع البيانات، تابع الحساب
+    let baseSalary = parseFloat(salary) * 1000 || 0; // تحويل إلى القيمة الأصلية
+    let degreeAllowanceValue = (parseFloat(degreeAllowance) / 100) * baseSalary || 0;
+    let riskAllowanceValue = (parseFloat(riskAllowance) / 100) * baseSalary || 0;
+    let marriageAllowances = parseFloat(maritalStatus) || 0; // استخدام القيمة المباشرة للحالة الزوجية
+    let adminAllowanceValue = (parseFloat(document.getElementById("adminAllowance").value) || 0) * 1000; 
+
+    let retirementDeduction = 0.1 * baseSalary; // 10% من الراتب الأساسي
+
+    let totalSalary = baseSalary + degreeAllowanceValue + riskAllowanceValue + marriageAllowances + adminAllowanceValue + childrenCount + parseFloat(transportAllowance) - retirementDeduction;
+
+    document.getElementById('retirementDeduction').innerText = `المبلغ المستقطع للتقاعد  = ${retirementDeduction.toLocaleString()} دينار عراقي`;
+    document.getElementById('totalSalary').innerText = `صافي الراتب الكلي = ${totalSalary.toLocaleString()} دينار عراقي`;
+}
+
+ function resetForm() {
+    document.getElementById('grade').value = '';
+    document.getElementById('step').value = '';
+    document.getElementById('salary').value = '';
+    document.getElementById('degreeAllowance').value = '';
+    document.getElementById('riskAllowance').value = '';
+    document.getElementById('maritalStatus').value = '';
+    document.getElementById('children').value = '';   
+    document.getElementById('adminAllowance').value =  '';
+    document.getElementById('transportAllowance').value =  ''; 
+
+    calculateSalary();
+}
     function toggleCollapsible(element) {
         element.classList.toggle("active");
         var content = element.nextElementSibling;
@@ -340,6 +437,6 @@
         }
     }
 
-</script>
+  </script>
   </body>
 </html>
