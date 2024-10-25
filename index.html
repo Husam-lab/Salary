@@ -7,38 +7,18 @@
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" sizes="180x180" href="./Mon.png">
    <style>
+
         body {
             direction: rtl;
             font-family: Arial, sans-serif;
             text-align: center;
-           background-color: #000; /* لون خلفية أسود */
+            background-color: #333; /* لون خلفية أسود */
             color: #fff; /* لون النص أبيض */
         }
         .container {
             max-width: 400px;
             margin: 0 auto;
             padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            background-color: #333; /* لون خلفية داكن للعنصر */
-        }
-        .form-group {
-            margin-bottom: 15px;
-            position: relative;
-        }
-       
-        body {
-            direction: rtl;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #000; /* لون خلفية أسود */
-            color: #fff; /* لون النص أبيض */
-        }
-        .container {
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ccc;
             border-radius: 10px;
             background-color: #333; /* لون خلفية داكن للعنصر */
         }
@@ -53,35 +33,36 @@
             transform: translateX(-50%); /* لتحريك الليبل إلى المنتصف */
             font-size: 16px;
             color: #fff;
-            pointer-events: none;
             transition: 0.2s ease all;
         }
         input:focus + label,
         input:not(:placeholder-shown) + label {
             top: -1px; /* مكان الليبل بعد الإدخال */
-            font-size: 12px; /* حجم الخط بعد الإدخال */
+          font-size: 12px; /* حجم الخط بعد الإدخال */
            background-color: #333; /* لون خلفية داكن للعنصر */
         }
         input {
             width: 95%;
             text-align: center;
             padding: 8px;
-            background-color: #444; /* لون خلفية الحقول */
+            background-color: #333; /* لون خلفية الحقول */
             color: #fff; /* لون النص أبيض */
             border: none; /* إزالة الحدود */
             border-radius: 5px; /* زوايا مستديرة */
-            font-size: 16px; /* حجم الخط */
+border: 0.1px solid #ccc;
+          font-size: 16px; /* حجم الخط */
             margin-top: 5px; /* إضافة مسافة فوق الحقل */
         }
              select {
             width: 100%;
             text-align: center;
             padding: 8px;
-            background-color: #444; /* لون خلفية الحقول */
+            background-color: #333; /* لون خلفية الحقول */
             color: #fff; /* لون النص أبيض */
             border: none; /* إزالة الحدود */
             border-radius: 5px; /* زوايا مستديرة */
-            font-size: 16px; /* حجم الخط */
+            border: 0.1px solid #ccc;
+               font-size: 16px; /* حجم الخط */
             margin-top: 10px; /* إضافة مسافة فوق الحقل */
         }
         button {
@@ -120,10 +101,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 1px solid #555; /* لون حدود */
+
             border-radius: 5px;
             padding: 10px;
-            background-color: #222; /* لون خلفية */
+            background-color: #333; /* لون خلفية */
         }
         #totalSalary {
             color: lightgreen; /* لون النص */
@@ -144,7 +125,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #444; /* لون خلفية */
+            background-color: black; /* لون خلفية */
             padding: 10px;
             font-size: 14px;
             font-weight: bold;
@@ -164,13 +145,13 @@
         .collapsible-content {
             display: none;
             font-size: 14px;
-            color: #fff; /* لون النص */
+            color: white; /* لون النص */
             padding: 10px;
-            text-align: right;
+            text-align: center;
             border: 1px solid #555; /* لون حدود */
             border-radius: 5px;
             margin-top: 5px;
-            background-color: #333; /* لون خلفية */
+            background-color: black; /* لون خلفية */
         }
     </style>
 </head>
@@ -288,7 +269,6 @@
     <div class="collapsible" onclick="toggleCollapsible(this)">ملاحظات الرواتب والحاسبة :</div>
     <div class="collapsible-content">
                 <p>- استخدم الارقام الانكليزية في حال كتبت الارقام.</p>
-                <p>- البرنامج يعمل بصورة صحيحة سواء ادخلت الراتب الأسمي او اخترت الدرجة والمرحلة وقام هو بكتابة الراتب الأسمي.</p>
         <p>- البرنامج لا يحسب المسكنين في درجة والعابرين لعلاوات درجة أخرى.</p>
         <p>- عند اختيار الدرجة والمرحلة البرنامج سيقوم بحساب الراتب الأسمي تبعاً للدرجة والمرحلة المكتوبة.</p>
         <p>- لا تكتب أصفار الدينار العراقي (مثلاً: 100,000 اكتبها فقط 100).</p>
