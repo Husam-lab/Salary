@@ -184,7 +184,7 @@
 
     <div class="form-group">
         <select id="grade" onchange="updateBaseSalary()">
-            <option value="">-- أنقر لأختيار الدرجة --</option>
+            <option value="">-- أنقر لإختيار الدرجة --</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -200,7 +200,7 @@
 
     <div class="form-group">
         <select id="step" onchange="updateBaseSalary()">
-            <option value="">-- أنقر لأختيار المرحلة --</option>
+            <option value="">-- أنقر لإختيار المرحلة --</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -216,11 +216,10 @@
     </div>
     <div class="form-group">
         <select id="degreeAllowance" onchange="updateBaseSalary()">
-            <option value="">-- أنقر لأختيار الشهادة --</option>
+            <option value="">-- أنقر لإختيار الشهادة --</option>
             <option value="0">لاتوجد شهادة</option>
             <option value="15">(المتوسطة 15%)</option>
             <option value="25">(الإعدادية 25%)</option>
-            <option value="35">(الاعدادية 35%)</option>
             <option value="35">(الدبلوم 35%)</option>
             <option value="45">(البكالوريوس 45%)</option>
             <option value="75">(الماجستير 75%)</option>
@@ -229,15 +228,15 @@
     </div>
     <div class="form-group">
         <select id="riskAllowance" onchange="updateBaseSalary()">
-            <option value="">-- أنقر لأختيار الخطورة --</option>
+            <option value="">-- أنقر لإختيار الخطورة --</option>
             <option value="0">لاتوجد خطورة</option>
-            <option value="80">(المهن الصحية ولاتمريضية 80%)</option>
+            <option value="80">(المهن الصحية والتمريضية 80%)</option>
             <option value="180">(التخدير 180%)</option>
         </select>
     </div>
      <div class="form-group">
         <select id="maritalStatus" onchange="updateMaritalStatus()">
-            <option value="" disabled selected>-- أنقر لأختيار الحالة الزوجية --</option>
+            <option value="" disabled selected>-- أنقر لإختيار الحالة الزوجية --</option>
             <option value="50000">متزوج</option>
             <option value="0">غير متزوج</option>
         </select>
@@ -245,7 +244,7 @@
 
     <div class="form-group" id="childrenContainer" style="display: none;">
         <select id="children">
-       <option value="" disabled selected>-- أنقر لأختيار عدد الاطفال --</option>
+       <option value="" disabled selected>-- أنقر لإختيار عدد الأطفال --</option>
             <option value="0">0</option>
             <option value="10000">1</option>
             <option value="20000">2</option>
@@ -255,7 +254,7 @@
     </div>
     <div class="form-group">
         <select id="transportAllowance">
-            <option value="" disabled selected>ا-- أنقر لأختيار مخصصات النقل --</option>
+            <option value="" disabled selected>ا-- أنقر لإختيار مخصصات النقل --</option>
             <option value="10000">10 آلاف مركز المحافظة</option>
             <option value="20000">20 ألف قضاء</option>
             <option value="30000">30 ألف ناحية</option>
@@ -265,7 +264,7 @@
     </div>
 <div class="form-group">
     <input type="number" id="salary" placeholder=" " pattern="[0-9]*" inputmode="decimal" required>
-    <label for="salary">الراتب الاسمي</label>
+    <label for="salary">الراتب الأسمي</label>
 </div>
 <div class="form-group">
     <input type="number" id="adminAllowance" placeholder=" " pattern="[0-9]*" inputmode="decimal" required>
