@@ -31,28 +31,29 @@
             left: 50%; /* وضع الليبل في المنتصف */
             top: 12px; /* يمكنك تعديل هذه القيمة لتناسب احتياجاتك */
             transform: translateX(-50%); /* لتحريك الليبل إلى المنتصف */
-            font-size: 11px;
+            font-size: 14px;
             color: #fff;
             transition: 0.2s ease all;
         }
         input:focus + label,
         input:not(:placeholder-shown) + label {
             top: -1px; /* مكان الليبل بعد الإدخال */
-          font-size: 11px; /* حجم الخط بعد الإدخال */
+          font-size: 12px; /* حجم الخط بعد الإدخال */
            background-color: #333; /* لون خلفية داكن للعنصر */
         }
-        input {
-            width: 95%;
-            text-align: center;
-            padding: 8px;
-            background-color: #333; /* لون خلفية الحقول */
-            color: #fff; /* لون النص أبيض */
-            border: none; /* إزالة الحدود */
-            border-radius: 10px; /* زوايا مستديرة */
-border: 0.1px solid #ccc;
-          font-size: 11px; /* حجم الخط */
-            margin-top: 5px; /* إضافة مسافة فوق الحقل */
-        }
+input {
+    width: 95%;
+    text-align: center;
+    padding: 0; /* إزالة الحشوة لتقليل الارتفاع */
+    height: 40px; /* تحديد ارتفاع الحقل بـ 40 بكسل */
+    background-color: #333; /* لون خلفية الحقول */
+    color: #fff; /* لون النص أبيض */
+    border: none; /* إزالة الحدود */
+    border-radius: 10px; /* زوايا مستديرة */
+    border: 0.1px solid #ccc;
+    font-size: 14px; /* حجم الخط */
+    margin-top: 5px; /* إضافة مسافة فوق الحقل */
+}
              select {
             width: 100%;
             text-align: center;
@@ -62,7 +63,7 @@ border: 0.1px solid #ccc;
             border: none; /* إزالة الحدود */
             border-radius: 10px; /* زوايا مستديرة */
             border: 0.1px solid #ccc;
-               font-size: 16px; /* حجم الخط */
+            font-size: 16px; /* حجم الخط */
             margin-top: 10px; /* إضافة مسافة فوق الحقل */
         }
         button {
