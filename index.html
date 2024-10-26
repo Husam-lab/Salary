@@ -236,7 +236,7 @@ input {
     </div>
     <div class="form-group">
         <select id="transportAllowance">
-            <option value="" disabled selected>ا-- أنقر لإختيار مخصصات النقل --</option>
+            <option value="" disabled selected>-- أنقر لإختيار مخصصات النقل --</option>
             <option value="10000">10 آلاف مركز المحافظة</option>
             <option value="20000">20 ألف قضاء</option>
             <option value="30000">30 ألف ناحية</option>
@@ -398,19 +398,26 @@ function calculateSalary() {
     document.getElementById('totalSalary').innerText = `صافي الراتب الكلي = ${totalSalary.toLocaleString()} دينار عراقي`;
 }
 
- function resetForm() {
-    document.getElementById('grade').value = '';
-    document.getElementById('step').value = '';
-    document.getElementById('salary').value = '';
-    document.getElementById('degreeAllowance').value = '';
-    document.getElementById('riskAllowance').value = '';
-    document.getElementById('maritalStatus').value = '';
-    document.getElementById('children').value = '';   
-    document.getElementById('adminAllowance').value =  '';
-    document.getElementById('transportAllowance').value =  ''; 
-
-    calculateSalary();
+function resetForm() {
+    // إعادة تعيين قيمة الحقول الأساسية
+    document.getElementById("grade").value = "";
+    document.getElementById("step").value = "";
+    document.getElementById("degreeAllowance").value = "";
+    document.getElementById("riskAllowance").value = "";
+    document.getElementById("maritalStatus").value = "";
+    document.getElementById("children").value = "";
+    document.getElementById("transportAllowance").value = "";
+    document.getElementById("salary").value = "";
+    document.getElementById("adminAllowance").value = "";
+    
+    // تصفير قيمة "المبلغ المستقطع للتقاعد" و"صافي الراتب الكلي"
+    document.getElementById("retirementDeduction").textContent = "المبلغ المستقطع للتقاعد = 0 دينار عراقي";
+    document.getElementById("totalSalary").textContent = "صافي الراتب الكلي = 0 دينار عراقي";
+    
+    // إخفاء حقل الأطفال إذا كانت الحالة الزوجية غير متزوج
+    document.getElementById("childrenContainer").style.display = "none";
 }
+
     function toggleCollapsible(element) {
         element.classList.toggle("active");
         var content = element.nextElementSibling;
