@@ -4,8 +4,8 @@
     "start_url": "./index.html",
     "display": "standalone",
     "background_color": "#ffffff",
-    "theme_color": "#4CAF50",
-    "description": "حاسبة الرواتب الصحية العراقية.",
+    "theme_color": "#0D6EFD",
+    "description": "حاسبة رواتب الصحية العراقية.",
     "icons": [
         {
             "src": "./Mon.png",
